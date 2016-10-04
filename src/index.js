@@ -20,25 +20,7 @@ new Vue({
     //   '#', '#', '#', '#', '+', '#', '#', '#', '#'
     // ],
 
-    // this is temporary data (more like a story to me)
-    entities: [
-      {
-        id: 1,
-        sprite: '@', // goodguy greg yay :D ggg (aka gennady gennadyevich golovkin)
-        bind: 'player'
-      },
-      {
-        id: 2,
-        sprite: 'w', // badguy bruce boo :C bbb
-        location: {
-          x: 2,
-          y: 2,
-          z: 0
-        },
-        health: 1000,
-        stamina: 40
-      }
-    ],
+    entities: []
   },
   methods: {
     mapName: function () {
@@ -48,6 +30,32 @@ new Vue({
       // there's a better way to update the map than this - we'll do it in the world computed property
       var map = this.neutral;
       this.neutral = map;
+    },
+    generate_entities: function () {
+      // generate code here
+
+      this.entities = null // replace null with an array of objects
+
+      // this will be the structure of the generated code
+      // this is temporary data (more like a story to me)
+      // entities: [
+      //   {
+      //     id: 1,
+      //     sprite: '@', // goodguy greg yay :D ggg (aka gennady gennadyevich golovkin)
+      //     bind: 'player'
+      //   },
+      //   {
+      //     id: 2,
+      //     sprite: 'w', // badguy bruce boo :C bbb
+      //     location: {
+      //       x: 2,
+      //       y: 2,
+      //       z: 0
+      //     },
+      //     health: 1000,
+      //     stamina: 40
+      //   }
+      // ],
     }
   },
   computed: {
