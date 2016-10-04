@@ -32,6 +32,9 @@ new Vue({
       this.neutral = map;
     },
     generate_badguys: function () {
+      var amount = 1000
+
+
       // generate code here
 
       this.badguys = null // replace null with an array of objects
