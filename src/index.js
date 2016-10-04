@@ -56,6 +56,12 @@ new Vue({
       //     stamina: 40
       //   }
       // ],
+    },
+
+    behavior_badguys: function () {
+      // if player is within x radius move postition of badguy 1 block closer to player
+      // if touching player, attack player
+      // upon death of baguy remove badguy from badguys array
     }
   },
   computed: {
@@ -85,6 +91,7 @@ new Vue({
         this.generate_badguys()
       }
 
+      // every time this.badguys gets updated it will render changes to the world
       var badguys = this.badguys
 
       // merge the bad guys into the world
