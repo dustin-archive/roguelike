@@ -1,28 +1,47 @@
 new Vue({
   el: '#app',
   data: {
-    test: 'hello world!',
-    health: 100,
-    level: 0, // start in a neutral room
-    coordinates: { x: 0, y: 0, z: 0 },
+
+    player: {
+      health: 100,
+      level: 0, // start in a neutral room
+      location: { x: 0, y: 0, z: 0 },
+    },
 
     // default world layer
     neutral: [
-      '■ ■ ■ ■ - ■ ■ ■ ■',
-      '■               ■',
-      '■               ■',
-      '|       @       |',
-      '■               ■',
-      '■               ■',
-      '■ ■ ■ ■ - ■ ■ ■ ■'
+      '####+####',
+      '#       #',
+      '#       #',
+      '+       +',
+      '#       #',
+      '#       #',
+      '####+####'
     ],
-    
+
+    // this is temporary data (more like a story to me)
 		entities: [
-			{id: 1, coordinates: { x: 0, y: 0, z: 0 }}
+			{
+        id: 1,
+        sprite: '@', // goodguy greg yay :D ggg (aka gennady gennadyevich golovkin)
+        bind: 'player'
+      },
+			{
+        id: 2,
+        sprite: 'w', // badguy bruce boo :C bbb
+        location: {
+          x: 2,
+          y: 2,
+          z: 0
+        },
+        health: 1000,
+        stamina: 40
+      }
 		]
+
   },
   methods: {
-    nameMaker: function () {
+    mapName: function () {
 
     }
   },
@@ -32,9 +51,13 @@ new Vue({
     }
   },
   components: {
+    game: {
+      template: "<div class='grid' v-for='tile in neutral'><div class='tile' v-bind:style='tile.styles'>{{ tile.sprite }}</div></div>",
+      props: ['neutral']
+    },
     hud: {
       data: function () {
-        props: ['health']
+        props: ['player.health']
       }
     },
     gradient: {
@@ -44,7 +67,7 @@ new Vue({
     },
     mini: {
       data: function () {
-        props: ['coordinates']
+        props: ['player.coordinates']
       }
     }
   }
