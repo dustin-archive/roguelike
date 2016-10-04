@@ -5,19 +5,17 @@ html, body, .app {
 
 body {
   margin: 0;
-  font: 400 32px/1 monospace;
+  font: 400 32px/1 'Cutive Mono', monospace;
   color: gray;
   background: black;
 }
 
 .grid {
   display: flex;
-  /*flex-direction: column;*/
   flex-flow: wrap;
 }
 
 .tile {
-  /*width: calc(100% / 49);*/
   width: calc(100% / 9);
   text-align: center;
 }

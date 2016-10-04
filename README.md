@@ -1,3 +1,2 @@
 # roguelike
-
-A roguelike with vue.js
+Web-based roguelike powered by Vue.js.
