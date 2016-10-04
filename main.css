@@ -19,4 +19,5 @@ body {
 .tile {
   /*width: calc(100% / 49);*/
   width: calc(100% / 9);
+  text-align: center;
 }
