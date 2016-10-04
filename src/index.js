@@ -20,7 +20,7 @@ new Vue({
     //   '#', '#', '#', '#', '+', '#', '#', '#', '#'
     // ],
 
-    entities: []
+    badguys: []
   },
   methods: {
     mapName: function () {
@@ -31,10 +31,10 @@ new Vue({
       var map = this.neutral;
       this.neutral = map;
     },
-    generate_entities: function () {
+    generate_badguys: function () {
       // generate code here
 
-      this.entities = null // replace null with an array of objects
+      this.badguys = null // replace null with an array of objects
 
       // this will be the structure of the generated code
       // this is temporary data (more like a story to me)
@@ -62,8 +62,9 @@ new Vue({
     // this will eventually generate the entire world and call all the methods to modify it
     // everything will be routed through this property
     world: function () {
-      // TODO: generate the whole world and return it as an array
-      return [
+      // this is basically garbage if the world generator is going to do this for us
+      // i'm only putting it here because the world generator doesn't exist yet
+      var start = [
         '#', '#', '#', '#', '+', '#', '#', '#', '#',
         '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
         '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
@@ -72,6 +73,31 @@ new Vue({
         '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
         '#', '#', '#', '#', '+', '#', '#', '#', '#'
       ]
+      var world = start // once the world generator exists this should be an array and start variable should be deleted
+
+
+
+
+      // # Makin' Badguys
+
+      // if there's no bad guys make some badguys
+      if (!this.badguys) {
+        this.generate_badguys()
+      }
+
+      var badguys = this.badguys
+
+      // merge the bad guys into the world
+      // insert code for merging the badguys into the world
+      // ...
+
+
+
+
+
+
+      // TODO: generate the whole world and return it as an array
+      return world
     }
   },
   mounted: function () {
