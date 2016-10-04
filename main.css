@@ -9,6 +9,6 @@ body {
   flex-wrap: flow;
 }
 
-.tile {
+.tileStyle {
   flex: 1;
 }
