@@ -87,9 +87,7 @@ new Vue({
       // # Makin' Badguys
 
       // if there's no bad guys make some badguys
-      if (!this.badguys) {
-        this.generate_badguys()
-      }
+      if (!this.badguys) this.generate_badguys()
 
       // every time this.badguys gets updated it will render changes to the world
       var badguys = this.badguys
