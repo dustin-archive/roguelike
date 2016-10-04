@@ -12,10 +12,11 @@ body {
 
 .grid {
   display: flex;
-  flex-direction: column;
-  /*flex-flow: wrap;*/
+  /*flex-direction: column;*/
+  flex-flow: wrap;
 }
 
 .tile {
-  width: calc(100% / 49);
+  /*width: calc(100% / 49);*/
+  width: calc(100% / 9);
 }
