@@ -61,6 +61,7 @@ module.exports = (function() {
     RIGHT: 39,
     UP: 38,
     DOWN: 40,
+    ARROWS: [37, 39, 38, 40],
     init: function() {
       initialized = true;
       document.addEventListener("keydown", function(event) {

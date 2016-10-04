@@ -11,7 +11,7 @@ module.exports = (function(){
       var t = typeof x;
       if (t === "undefined") {
         throw "Warning: Vector received undefined arguments!";
-      } else if (x instanceof Vector) {
+      } else if (x instanceof Vector || x.constructor.name === "Object") {
         y = x.y;
         x = x.x;
       } else if (x.constructor.name === "Array") {
