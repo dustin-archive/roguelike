@@ -1,4 +1,10 @@
+html, body, .app {
+  min-width: 100%;
+  min-height: 100%;
+}
+
 body {
+  margin: 0;
   font: 400 32px/1 monospace;
   color: gray;
   background: black;
@@ -6,9 +12,10 @@ body {
 
 .grid {
   display: flex;
-  flex-wrap: flow;
+  flex-direction: column;
+  /*flex-flow: wrap;*/
 }
 
 .tile {
-  flex: 1;
+  width: calc(100% / 49);
 }
