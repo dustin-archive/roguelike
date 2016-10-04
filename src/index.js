@@ -1,5 +1,5 @@
-var geometry = require('./components/geometry')
-var key = require('./components/key')
+var geometry = require('./utils/geometry')
+var key = require('./utils/key')
 
 var map = null
 var entities = []
