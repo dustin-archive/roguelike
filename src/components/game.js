@@ -1,25 +1,4 @@
-// Game logic
-module.exports = (function () {
-  var MAP_SIZE = [9, 9]
-
-  var game = {
-
-  }
-
-  var player = {
-
-  }
-
-  var element = {
-    
-  }
-
-  function init() {
-
-  }
-
-  return {
-    init: init,
-    player: player
-  }
-})
+module.exports = {
+  template: "<div class='grid'><div class='tile' v-for='item in neutral'>{{ item }}</div></div>",
+  props: ['neutral']
+}
