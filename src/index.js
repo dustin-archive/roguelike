@@ -68,14 +68,11 @@ Entity.move = function (dx, dy) { // Relative movement
 Entity.spawn = function (x, y) {
   this.pos = new geometry.Vector(x, y)
   entities.push(this)
+  return this
 }
 
 var Player = Object.create(Entity)
 Player.sprite = '@'
-Player.spawn = function (x, y) {
-  Entity.spawn.apply(this, arguments)
-  return this
-}
 
 var MAP_WIDTH  = 9
 var MAP_HEIGHT = 9

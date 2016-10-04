@@ -9,19 +9,27 @@
 
 html, body, .app {
   min-width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 
 body {
   margin: 0;
   color: gray;
-  font: 400 32px/1 'Cutive Mono', monospace;
+  font: 400 8vmin/1 'Cutive Mono', monospace;
   background: black;
 }
 
+.app {
+  display: flex;
+  perspective: 640px;
+}
+
 .grid {
+  margin: auto;
   display: flex;
   flex-flow: wrap;
+  width: 40vmin; /* magic number */
+  transform: rotateX(45deg);
 }
 
 .tile {
