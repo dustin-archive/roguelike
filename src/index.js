@@ -114,6 +114,9 @@ new Vue({
     // if this was somehow self initiating the vue instance we don't need it
     // callback && callback.call(this);
   },
+  mixins: [
+    // require('mixins/badguys')
+  ],
   components: {
     game: require('components/game'),
     hud: require('components/hud'),
