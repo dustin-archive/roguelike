@@ -52,7 +52,8 @@ new Vue({
   },
   components: {
     game: {
-      template: "<div class='grid' v-for='tile in neutral'><div class='tile' v-bind:style='tile.styles'>{{ tile.sprite }}</div></div>",
+      // temp remove: v-bind:style='tile.styles'
+      template: "<div class='grid' v-for='tile in neutral'><div class='tile'>{{ tile }}</div></div>",
       props: ['neutral']
     },
     hud: {

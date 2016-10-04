@@ -6,6 +6,7 @@ body {
 
 .grid {
   display: flex;
+  flex-wrap: flow;
 }
 
 .tile {
