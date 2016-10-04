@@ -9,15 +9,16 @@ new Vue({
     },
 
     // default world layer
-    neutral: [
-      '#', '#', '#', '#', '+', '#', '#', '#', '#',
-      '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
-      '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
-      '+', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '+',
-      '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
-      '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
-      '#', '#', '#', '#', '+', '#', '#', '#', '#'
-    ],
+    // I commented this out because we're going to work on the world generator next which will make this useless
+    // neutral: [
+    //   '#', '#', '#', '#', '+', '#', '#', '#', '#',
+    //   '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
+    //   '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
+    //   '+', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '+',
+    //   '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
+    //   '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
+    //   '#', '#', '#', '#', '+', '#', '#', '#', '#'
+    // ],
 
     // this is temporary data (more like a story to me)
     entities: [
@@ -44,13 +45,30 @@ new Vue({
 
     },
     update: function () {
+      // there's a better way to update the map than this - we'll do it in the world computed property
       var map = this.neutral;
       this.neutral = map;
     }
   },
-  computed: {},
+  computed: {
+    // this will eventually generate the entire world and call all the methods to modify it
+    // everything will be routed through this property
+    world: function () {
+      // TODO: generate the whole world and return it as an array
+      return [
+        '#', '#', '#', '#', '+', '#', '#', '#', '#',
+        '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
+        '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
+        '+', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '+',
+        '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
+        '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#',
+        '#', '#', '#', '#', '+', '#', '#', '#', '#'
+      ]
+    }
+  },
   mounted: function () {
-    callback && callback.call(this);
+    // if this was somehow self initiating the vue instance we don't need it
+    // callback && callback.call(this);
   },
   components: {
     game: require('components/game'),
