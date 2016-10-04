@@ -2,9 +2,8 @@ new Vue({
   el: '#app',
   data: {
     test: 'hello world!',
-
-		health: 100,
-		level: 0, // start in a neutral room
+    health: 100,
+    level: 0, // start in a neutral room
     coordinates: { x: 0, y: 0, z: 0 },
 
     // default world layer
@@ -17,7 +16,7 @@ new Vue({
       '■               ■',
       '■ ■ ■ ■ - ■ ■ ■ ■'
     ],
-
+    
 		entities: [
 			{id: 1, coordinates: { x: 0, y: 0, z: 0 }}
 		]
