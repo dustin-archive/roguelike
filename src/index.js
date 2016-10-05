@@ -6,7 +6,11 @@ new Vue({
   data: {
     map: null,
     player: null,
-    initialized: false
+    initialized: false,
+
+    playerPositionX: 0,
+    playerPositionY: 0,
+    playerPositionZ: 0
   },
   computed: {
     view: function () { // Flatten map data on get
@@ -31,22 +35,33 @@ new Vue({
     }
   },
   mounted: function () {
-    var spawn, that = this
-    this.map = Object.create(this.Map)
-    spawn = this.map.generate()
-    this.player = Object.create(this.Player).spawn(spawn)
-    key.init()
-    key.down(function (event) {
-      var code = event.keyCode || event.which;
-      var directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
-      var index = key.ARROWS.indexOf(code)
-      if (index !== -1) {
-        if (!that.player.move(directions[index])) { // Move, return movement success
-          key.up(code);
-        }
-      }
+    // var spawn, that = this
+    // this.map = Object.create(this.Map)
+    // spawn = this.map.generate()
+    // this.player = Object.create(this.Player).spawn(spawn)
+    // key.init()
+    // key.down(function (event) {
+    //   var code = event.keyCode || event.which;
+    //   var directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+    //   var index = key.ARROWS.indexOf(code)
+    //   if (index !== -1) {
+    //     if (!that.player.move(directions[index])) { // Move, return movement success
+    //       key.up(code);
+    //     }
+    //   }
+    // })
+    // this.initialized = true
+
+
+    var that = this
+    window.addEventListener('keydown', function (e) {
+      var code = e.keyCode
+           if (code === 38) that.playerPositionY-- // top
+      else if (code === 39) that.playerPositionX++ // right
+      else if (code === 40) that.playerPositionY++ // bottom
+      else if (code === 37) that.playerPositionX-- // left
     })
-    this.initialized = true
+
   },
   mixins: [
     require('./mixins/element'),
