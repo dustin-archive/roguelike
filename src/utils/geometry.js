@@ -294,160 +294,17 @@ module.exports = (function(){
         return false;
       }
     },
+    edge: function(x, y) {
+      var other = Vector.resolve(x, y);
+      return other.x == this.left || other.x == this.right - 1 || other.y == this.top || other.y == this.bottom - 1;
+    },
     string: function(){
       return this.left+" -> "+this.right+", "+this.top+" -> "+this.bottom;
     }
   };
 
-  function Circle(pos, radius) {
-    this.pos = pos;
-    this.radius = radius;
-    this.mass = radius;
-    this.velocity = new Vector(0, 0);
-
-    var property, obj;
-
-    for (property in this.properties) {
-      obj = this.properties[property];
-      Object.defineProperty(this, property, obj);
-    }
-  }
-
-  Circle.unpack = function(data) {
-    var circle = new Circle(Vector.unpack(data.pos), data.radius);
-    circle.mass = data.mass;
-    circle.velocity = Vector.unpack(data.velocity);
-    return circle;
-  };
-
-  Circle.prototype = {
-    properties: {
-      "left": {
-        get: function(){
-          return this.pos.x - this.radius;
-        },
-        set: function(value){
-          this.pos.x = value + this.radius;
-        }
-      },
-      "right": {
-        get: function(){
-          return this.pos.x + this.radius;
-        },
-        set: function(value){
-          this.pos.x = value - this.radius;
-        }
-      },
-      "top": {
-        get: function(){
-          return this.pos.y - this.radius;
-        },
-        set: function(value){
-          this.pos.y = value + this.radius;
-        }
-      },
-      "bottom": {
-        get: function(){
-          return this.pos.y + this.radius;
-        },
-        set: function(value){
-          this.pos.y = value - this.radius;
-        }
-      },
-      "x": {
-        get: function(){
-          return this.pos.x;
-        },
-        set: function(value){
-          this.pos.x = value;
-        }
-      },
-      "y": {
-        get: function(){
-          return this.pos.y;
-        },
-        set: function(value){
-          this.pos.y = value;
-        }
-      },
-      "diameter": {
-        get: function(){
-          return this.radius * 2;
-        },
-        set: function(value){
-          this.radius = value / 2;
-        }
-      },
-      "center": {
-        get: function(){
-          return this.pos;
-        },
-        set: function(value){
-          this.pos.set(value);
-        }
-      },
-      "rect": {
-        get: function(){
-          return new Rect(this.pos.x - this.radius, this.pos.y - this.radius, this.radius * 2, this.radius * 2);
-        },
-        set: function(value){
-          this.pos = value.center.clone();
-          this.radius = (value.width + value.height) / 4;
-        }
-      }
-    },
-    pack: function() {
-      return {
-        pos: this.pos.pack(),
-        radius: this.radius,
-        velocity: this.velocity.pack(),
-        mass: this.mass
-      };
-    },
-    intersects: function(other) {
-      var d, m;
-      if (other.rect.intersects(this.rect)) {
-        d = other.rect.center.subtracted(this.rect.center);
-        m = this.radius + other.radius;
-        return d.x * d.x + d.y * d.y < m * m;
-      }
-    },
-    respond: function(other) {
-      var d, m, n, t, c, sna, snb, sta, stb, sa, sb, snaa, snab, staa, stab;
-      d = other.pos.subtracted(this.pos); // Distance between two circles
-      m = other.pos.added(this.pos).scaled(.5);
-      n = d.normalized(); // Vector normal
-      t = new Vector(-n.y, n.x); // Tangent
-      sna = n.dotted(this.velocity);
-      snb = n.dotted(other.velocity);
-      sta = t.dotted(this.velocity);
-      stb = t.dotted(other.velocity);
-      sa = (sna * (this.mass - other.mass) + 2 * other.mass * snb) / (this.mass + other.mass);
-      sb = (snb * (other.mass - this.mass) + 2 * this.mass * sna) / (other.mass + this.mass);
-      snaa = n.scaled(sa);
-      snab = n.scaled(sb);
-      staa = t.scaled(sta);
-      stab = t.scaled(stb);
-      this.velocity = staa.added(snaa); // Resulting velocities
-      other.velocity = stab.added(snab);
-
-      c = new Vector((this.pos.x * other.radius + other.pos.x * this.radius) / (this.radius + other.radius), (this.pos.y * other.radius + other.pos.y * this.radius) / (this.radius + other.radius)); // Point of collision
-
-      this.pos = c.subtracted(n.scaled(this.radius + 1)); // Addition of 1 avoids circles getting stuck
-      other.pos = c.added(n.scaled(other.radius));
-
-      return this;
-    },
-    collide: function(other) {
-      if (other.intersects(this)) {
-        this.respond(other);
-      }
-    }
-  };
-
   return {
     Vector: Vector,
-    Rect: Rect,
-    Circle: Circle
+    Rect: Rect
   };
 })();

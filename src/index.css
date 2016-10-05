@@ -22,6 +22,8 @@ body {
 .app {
   display: flex;
   perspective: 640px;
+  user-select: none;
+  pointer-events: none;
 }
 
 .grid {
