@@ -8,11 +8,8 @@ new Vue({
     player: null,
     initialized: false
   },
-  methods: {
-
-  },
   computed: {
-    view: function () {
+    view: function () { // Flatten map data on get
       if (this.initialized) {
         var view = []
         for (var i = 0, imax = this.map.length; i < imax; i++) {
@@ -22,29 +19,31 @@ new Vue({
           var pos = new geometry.Vector(x, y)
           for (var j = 0, jmax = this.elements.length; j < jmax; j++) {
             var entity = this.elements[j]
-            if (entity.pos.floored().equals(pos)) {
+            if (entity.pos.equals(pos)) {
               tile = entity
               break
             }
           }
           view.push(tile.pack())
         }
-
-        // TODO: generate the whole world and return it as an array
         return view
       }
     }
   },
   mounted: function () {
-    var that = this
-    this.map = Object.create(this.Map).generate()
-    this.player = Object.create(this.Player).spawn(this.map, this.map.center)
+    var spawn, that = this
+    this.map = Object.create(this.Map)
+    spawn = this.map.generate()
+    this.player = Object.create(this.Player).spawn(spawn)
     key.init()
     key.down(function (event) {
+      var code = event.keyCode || event.which;
       var directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
-      var index = key.ARROWS.indexOf(event.keyCode)
+      var index = key.ARROWS.indexOf(code)
       if (index !== -1) {
-        that.player.move(directions[index])
+        if (!that.player.move(directions[index])) { // Move, return movement success
+          key.up(code);
+        }
       }
     })
     this.initialized = true

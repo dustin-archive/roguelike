@@ -134,6 +134,9 @@ module.exports = (function(){
     rounded : function() {
       return new Vector(Math.round(this.x), Math.round(this.y));
     },
+    absolute : function() {
+      return new Vector(Math.abs(this.x), Math.abs(this.y));
+    },
     scale: function(scalar) {
       this.x *= scalar;
       this.y *= scalar;

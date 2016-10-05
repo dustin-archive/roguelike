@@ -1,4 +1,4 @@
 module.exports = {
-  template: "<div class='grid'><div class='tile' v-for='tile in view' v-bind:style='{color: tile.color}'>{{ tile.sprite }}</div></div>",
+  template: "<div class='grid'><div v-for='tile in view' v-html='tile.char' class='tile' :class='[tile.type]' :style='{color: tile.color}'></div></div>",
   props: ['view']
 }

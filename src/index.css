@@ -32,9 +32,20 @@ body {
   flex-flow: wrap;
   width: 40vmin; /* magic number */
   transform: rotateX(45deg);
+  perspective: 480px;
 }
 
 .tile {
   width: calc(100% / 9);
   text-align: center;
+  perspective: 480px;
+  /*transition: .25s;*/
+}
+
+.wall {
+  /*transform: translateZ(-8px)*/
+}
+
+.player {
+  /*transform: rotateX(-45deg);*/
 }
